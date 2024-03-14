@@ -1,6 +1,7 @@
 package com.tienda_m.service;
 
 import com.tienda_m.domain.Producto;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,4 +22,11 @@ public interface ProductoService {
 
     //elimina el registro por id
     public void delete(Producto producto);
+
+    public List<Producto> metodoJPA(double precioInf, double precioSup);
+
+    public List<Producto> metodoJPQL(double precioInf, double precioSup);
+
+    public List<Producto> metodoSQL(double precioInf, double precioSup);
+
 }
