@@ -61,4 +61,9 @@ public class ProductoServiceImpl implements ProductoService {
     public List<Producto> metodoSQL(double precioInf, double precioSup) {
         return productoDao.metodoSQL(precioInf, precioSup);
     }
+
+    @Override
+    public List<Producto> metodoTarea(String descripcion) {
+        return productoDao.findByDescripcion(descripcion);
+    }
 }

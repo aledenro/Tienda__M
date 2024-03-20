@@ -29,4 +29,6 @@ public interface ProductoService {
 
     public List<Producto> metodoSQL(double precioInf, double precioSup);
 
+    public List<Producto> metodoTarea(String descripcion);
+
 }

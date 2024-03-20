@@ -50,6 +50,7 @@
         </div>
       </div>
     </section>
+
     <section th:fragment="filtros">
       <div class="row py-4">
         <div class="col-md-4">
@@ -151,6 +152,22 @@
             </div>
           </form>
         </div>
+      </div>
+      <div class="row py-4">
+        <div class="col-md-4">
+          <form method="post" th:action="@{/pruebas/queryTarea}">
+            <label for="buscarDescripcion">[[#{pruebas.producto.buscarNombre}]]</label>
+            <input
+              type="text"
+              class="form-control"
+              th:value="${descripcion}"
+              th:name="descripcion"
+              required="true"
+            />
+            <button type="submit" class="btn btn-primary">
+              <i class="fas fa-check"></i> [[#{pruebas.buscarNombreProd}]]
+            </button>
+          </form>
       </div>
     </section>
   </body>

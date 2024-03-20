@@ -90,5 +90,14 @@ public class PruebasController {
 
         return "/pruebas/listado2";
     }
+
+    @PostMapping("/queryTarea")
+    public String queryTarea(@RequestParam(value = "descripcion") String descripcion, Model model) {
+        var listaProd = productoService.metodoTarea(descripcion);
+        model.addAttribute("productos", listaProd);
+        model.addAttribute("descripcion", descripcion);
+
+        return "/pruebas/listado2";
+    }
 }
 

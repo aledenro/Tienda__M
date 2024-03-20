@@ -17,4 +17,6 @@ public interface ProductoDao extends JpaRepository<Producto, Long> {
     //usa SQL
     @Query(nativeQuery = true, value = "SELECT * from producto p WHERE p.precio BETWEEN :precioInf and :precioSup ORDER BY p.descripcion ASC")
     public List<Producto> metodoSQL(double precioInf, double precioSup);
+
+    public List<Producto> findByDescripcion(String descripcion);
 }
