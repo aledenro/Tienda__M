@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6"
+>
   <head th:fragment="head">
     <title>TechShop</title>
     <meta charset="UTF-8" />
@@ -30,7 +34,7 @@
             class="collapse navbar-collapse justify-content-between"
             id="navbarCollapse"
           >
-            <ul class="navbar-nav">
+            <ul class="navbar-nav" sec:authorize="hasRole('ROLE_VENDEDOR')">
               <li class="nav-item px-2">
                 <a class="nav-link" th:href="@{/categoria/listado}"
                   >[[#{plantilla.categorias}]]</a
@@ -43,6 +47,7 @@
               </li>
               <li class="nav-item dropdown">
                 <a
+                  sec:authorize="hasRole('ROLE_ADMIN')"
                   class="nav-link dropdown-toggle"
                   data-bs-toggle="dropdown"
                   href="#"
@@ -61,12 +66,12 @@
                       >[[#{plantilla.consultas}]]</a
                     >
                   </li>
+                  <li>
+                    <a class="dropdown-item" th:href="@{/usuario/listado}"
+                      >[[#{plantilla.usuarios}]]</a
+                    >
+                  </li>
                 </ul>
-              </li>
-              <li class="nav-item px-2">
-                <a class="nav-link" th:href="@{/usuario/listado}"
-                  >[[#{plantilla.usuarios}]]</a
-                >
               </li>
             </ul>
             <ul class="navbar-nav">
@@ -87,6 +92,33 @@
                     <a class="dropdown-item" th:href="@{/(lang=en)}">EN</a>
                   </li>
                 </ul>
+              </li>
+            </ul>
+            <!--Aparece si no estoy autenticado-->
+            <ul class="navbar-nav" sec:authorize="!isAuthenticated()">
+              <li class="nav-item px-2 text-white my-auto">
+                <a class="nav-link" th:href="@{/login}"
+                  ><i class="fas fa-sign-in-alt"></i
+                ></a>
+              </li>
+            </ul>
+            <!--Aparece si estoy autenticado-->
+            <ul class="navbar-nav" sec:authorize="isAuthenticated()">
+              <li class="nav-item px-2 text-white my-auto">
+                <img
+                  th:src="@{${session.usuarioImagen}}"
+                  alt="foto"
+                  height="40px"
+                  class="rounded-circle"
+                />
+                <span sec:authentication="name">Doe</span>
+              </li>
+              <li class="nav-item px-2 text-white my-auto">
+                <form method="post" th:action="@{/logout}">
+                  <button class="btn btn-dark">
+                    <i class="fas fa-sign-out-alt"></i>
+                  </button>
+                </form>
               </li>
             </ul>
           </div>
