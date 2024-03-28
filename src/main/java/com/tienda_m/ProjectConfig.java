@@ -62,7 +62,7 @@ public class ProjectConfig implements WebMvcConfigurer {
     //metodo para establecer la estructura de seguridad del sitio
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.authorizeHttpRequests((request) -> request.requestMatchers("/", "/login", "/js/**", "/webjars/**").permitAll()
+        httpSecurity.authorizeHttpRequests((request) -> request.requestMatchers("/", "/login", "/js/**", "/webjars/**", "/registro/**").permitAll()
                         .requestMatchers("/categoria/listado", "/producto/listado").hasRole("VENDEDOR")
                         .requestMatchers("/categoria/nuevo", "categoria/modificar/**", "categoria/eliminar/**", "categoria/guardar").hasRole("ADMIN")
                         .requestMatchers("/producto/nuevo", "producto/modificar/**", "producto/eliminar/**", "producto/guardar", "/pruebas/**").hasRole("ADMIN")
